@@ -1,266 +1,340 @@
-# -Paytm-UPI-MDR-Interactive-Dashboard
-# 💳 Paytm / UPI MDR Interactive Dashboard
+# 💳 Paytm / UPI Merchant MDR Analytics Dashboard
 
-## 📌 Project Overview
+An interactive **Streamlit data analytics dashboard** for exploring UPI merchant transactions, transaction values, the ₹2,000 threshold, estimated Merchant Discount Rate (MDR), merchant categories, and monthly transaction trends.
 
-This project is an **interactive data analysis dashboard built using Python and Streamlit** to analyze UPI merchant transactions and estimate the **0.4% Merchant Discount Rate (MDR)** for eligible transactions.
+The dashboard allows users to upload their own transaction CSV file and dynamically analyze the data using interactive filters and visualizations.
 
-The dashboard allows users to upload their own transaction CSV file and interactively explore transaction amounts, categories, dates, payment applications, and estimated MDR.
+---
 
-> **Important:** The 0.4% discussed in this dashboard represents **Merchant Discount Rate (MDR), not a government tax**. The dashboard is intended for data analysis and visualization and should not be treated as a legal or accounting calculation.
+## 📊 Dashboard Preview
 
-## 🎯 Objectives
+The dashboard provides a clean and interactive interface with:
 
-* Analyze UPI/P2M transaction data.
-* Calculate estimated MDR for eligible transactions.
-* Identify transactions above the ₹2,000 threshold.
-* Analyze transaction trends over time.
-* Compare transaction values across categories.
-* Provide an interactive dashboard for exploring transaction data.
-* Allow users to upload and analyze their own CSV files.
+* 💰 Transaction value analysis
+* 🧾 Transaction count
+* 📌 ₹2,000 threshold analysis
+* 📊 Estimated MDR
+* 📅 Monthly transaction trends
+* 🏪 Category-wise transaction analysis
+* 💳 Payment app filtering
+* 🔎 Transaction-type filtering
+* 🧮 Transaction-level MDR calculations
+* 📋 Detailed transaction table
 
-## 🛠️ Technologies Used
+---
 
-* **Python**
-* **Pandas** – Data cleaning and manipulation
-* **NumPy** – Numerical calculations
-* **Streamlit** – Interactive dashboard development
-* **Matplotlib / Plotting Libraries** – Data visualization
-* **CSV** – Transaction data source
+## 🚀 Features
 
-## 📊 Dashboard Features
+### 1. Interactive Dashboard
 
-### 1. 📁 CSV File Upload
+The dashboard is built using **Streamlit** and provides an easy-to-use interface for analyzing merchant payment transactions.
 
-Users can upload their own transaction CSV file directly from the Streamlit sidebar.
+### 2. CSV File Upload
 
-The dashboard reads the uploaded data and automatically processes important columns such as:
+Users can upload their own transaction CSV file directly through the sidebar.
 
-* Date
-* Transaction Amount
-* Category
-* Payment App
-* Transaction Type
+The application automatically looks for:
 
-### 2. 🎛️ Interactive Filters
+* `Date`
+* `Amount`
 
-The dashboard provides filters that allow users to dynamically explore the data.
+It also supports common alternative column names such as `Transaction_Date`, `Transaction_Amount`, `Sales`, and `Value`.
 
-Users can filter by:
+### 3. Dashboard Filters
 
-* Date range
-* Transaction category
-* Payment application
-* Transaction type
+Users can filter the data by:
 
-All dashboard KPIs and charts update according to the selected filters.
+* 📅 Date range
+* 🏪 Category
+* 💳 Payment App
+* 🔄 Transaction Type
 
-### 3. 💰 KPI Cards
+All KPI cards, charts, and tables update automatically according to the selected filters.
 
-The dashboard displays important summary information such as:
+### 4. KPI Cards
 
-* Total Transaction Value
-* Number of Transactions
-* Transactions Above ₹2,000
-* Estimated MDR
+The dashboard displays four important metrics:
 
-These KPIs provide a quick overview of the selected dataset.
+| KPI                  | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| 💰 Transaction Value | Total value of filtered transactions                 |
+| 🧾 Transactions      | Total number of filtered transactions                |
+| 📌 Above ₹2,000      | Number and percentage of transactions above ₹2,000   |
+| 📊 Estimated MDR     | Estimated MDR calculated using the dashboard formula |
 
-### 4. 📈 Monthly Transaction Trend
+### 5. MDR Analysis
 
-This chart displays transaction value over time.
-
-**What it tells us:**
-It helps identify months with higher or lower transaction activity and makes it easier to understand the overall transaction trend.
-
-### 5. 📊 Category Analysis
-
-The category chart compares transaction values across different categories such as:
-
-* Grocery
-* Restaurant
-* Retail
-* Fuel
-* Telecom
-* Travel
-* Insurance
-
-**What it tells us:**
-It shows which transaction categories contribute more to the total transaction value.
-
-### 6. 📉 MDR Trend
-
-The MDR chart shows the estimated MDR amount over time.
-
-**What it tells us:**
-It helps users understand how the estimated MDR changes as transaction activity changes.
-
-### 7. 🔎 Transaction-Level Analysis
-
-The dashboard also displays the filtered transaction records in a table.
-
-Additional calculated columns include:
-
-* Eligible for 0.4% MDR
-* Estimated MDR
-
-This makes it possible to inspect individual transactions.
-
-## 🧮 MDR Calculation
-
-For an eligible transaction, the dashboard uses:
+The dashboard identifies transactions above the ₹2,000 threshold and calculates estimated MDR using:
 
 ```text
-Estimated MDR = Transaction Amount × 0.004
+MDR = Transaction Amount × 0.004
 ```
 
-### Example
-
-If the transaction amount is:
-
-```text
-₹10,000
-```
-
-Then:
+For example:
 
 ```text
 ₹10,000 × 0.004 = ₹40
 ```
 
-Therefore, the estimated MDR is:
+The dashboard also applies a ₹300 cap for transactions of ₹75,000 or more within the specified 0.4% category.
 
-```text
-₹40
-```
+> **Note:** The MDR calculation is an analytical estimate based on the framework represented in the dashboard. It should not be treated as legal, tax, or accounting advice.
 
-The dashboard also incorporates the ₹300 cap for transactions covered by the applicable 0.4% MDR framework.
+### 6. Data Visualizations
+
+The dashboard includes:
+
+#### 📈 Monthly Transaction Value
+
+Shows the total transaction value for each month.
+
+#### 📊 ₹2,000 Threshold Analysis
+
+Compares transactions:
+
+* ₹2,000 or below
+* Above ₹2,000
+
+#### 🏪 Category-wise Transaction Value
+
+Shows which merchant categories contribute the most transaction value.
+
+#### 📉 Estimated MDR by Month
+
+Displays estimated MDR amounts across months.
+
+### 7. Transaction-Level Analysis
+
+The dashboard provides a detailed table containing information such as:
+
+* Transaction ID
+* Date
+* Category
+* Amount
+* Payment App
+* Transaction Type
+* MDR eligibility
+* Estimated MDR
+
+Users can sort and inspect individual transactions.
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python**
+* **Streamlit**
+* **Pandas**
+* **NumPy**
+* **Data Analysis**
+* **Data Visualization**
+* **HTML/CSS styling**
+
+---
 
 ## 📂 Project Structure
 
 ```text
-Paytm-UPI-MDR-Dashboard/
+Paytm-UPI-MDR-Analytics/
 │
 ├── app.py
-│
-├── paytm_mdr_sample.csv
-│
+├── requirements.txt
 └── README.md
 ```
 
-### `app.py`
+---
 
-Main Streamlit application containing:
+## ⚙️ Installation
 
-* Dashboard layout
-* CSV upload
-* Data cleaning
-* Interactive filters
-* MDR calculation
-* KPI cards
-* Charts
-* Transaction table
-
-### `paytm_mdr_sample.csv`
-
-Sample transaction dataset that can be uploaded to test the dashboard.
-
-## ▶️ How to Run the Project
-
-### Step 1: Install Required Libraries
-
-Open Command Prompt or PowerShell:
+### Step 1 — Clone the repository
 
 ```bash
-pip install streamlit pandas numpy
+git clone https://github.com/yourusername/Paytm-UPI-MDR-Analytics.git
 ```
 
-If your project uses additional visualization libraries, install them as required.
-
-### Step 2: Open the Project Folder
-
-For example:
+### Step 2 — Open the project folder
 
 ```bash
-cd "C:\Users\Lenovo\OneDrive\Desktop\python\streamlit"
+cd Paytm-UPI-MDR-Analytics
 ```
 
-### Step 3: Run the Streamlit Application
+### Step 3 — Install required libraries
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 4 — Run the Streamlit application
 
 ```bash
 streamlit run app.py
 ```
 
-### Step 4: Open the Dashboard
+The dashboard will open automatically in your browser.
 
-Streamlit will provide a local address such as:
+---
+
+## 📦 Requirements
+
+Create a `requirements.txt` file containing:
 
 ```text
-http://localhost:8501
+streamlit
+pandas
+numpy
 ```
 
-Open this address in your browser.
+---
 
-## 📤 How to Use the Dashboard
+## 📄 Input CSV Format
 
-1. Run `streamlit run app.py`.
-2. Open the dashboard in your browser.
-3. Upload your transaction CSV from the sidebar.
-4. Select the required date range.
-5. Select categories or transaction types.
-6. Explore the KPI cards.
-7. Analyze the charts.
-8. View the filtered transaction table.
+You can upload your own transaction CSV file.
 
-## 📋 Expected CSV Format
+A recommended structure is:
 
-Your CSV should contain transaction-related information such as:
+| Transaction_ID | Date       | Category   | Amount | Payment_App | Type |
+| -------------- | ---------- | ---------- | -----: | ----------- | ---- |
+| TXN0001        | 2026-01-01 | Grocery    |   1500 | Paytm       | P2M  |
+| TXN0002        | 2026-01-02 | Restaurant |   2500 | Paytm       | P2M  |
+| TXN0003        | 2026-01-03 | Retail     |   5000 | Paytm       | P2M  |
 
-| Column         | Example    |
-| -------------- | ---------- |
-| Transaction_ID | TXN001     |
-| Date           | 2026-09-01 |
-| Category       | Grocery    |
-| Amount         | 5000       |
-| Payment_App    | Paytm      |
-| Type           | P2M        |
+### Required columns
 
-The application also contains column-detection logic for commonly used column names.
+```text
+Date
+Amount
+```
 
-## ⚠️ Important Note
+### Optional columns
 
-This dashboard is created for **educational, analytical, and visualization purposes**.
+```text
+Transaction_ID
+Category
+Payment_App
+Type
+```
 
-The MDR calculation shown is an **estimated analytical calculation** based on the selected transaction data. Actual applicability can depend on the transaction category, payment rules, and applicable regulations.
+---
 
-The dashboard should therefore not be used as a legal, tax, or accounting determination.
+## 📌 Sample Dataset
 
-## 📚 Data Source
+If no CSV file is uploaded, the dashboard automatically uses a built-in sample dataset containing transaction information for demonstration.
 
-The government information used to explain the MDR framework is based on official Government of India information regarding UPI merchant transactions and Merchant Discount Rate.
+This allows the dashboard to run immediately without requiring an external dataset.
 
-## 🚀 Future Improvements
+---
 
-Possible improvements include:
+## 🧮 MDR Calculation Logic
 
-* 📌 Paytm-specific transaction categorization
-* 📅 More advanced time-series analysis
-* 📊 Additional dashboard visualizations
-* 📥 Export filtered data to Excel/CSV
-* 📈 Interactive Plotly charts
-* 🔐 User authentication
-* ☁️ Deployment on Streamlit Community Cloud
-* 🗄️ Database integration
-* 📱 Improved mobile responsiveness
+The application creates an eligibility field:
+
+```python
+filtered["Eligible_0.4_MDR"] = filtered[amount_col] > 2000
+```
+
+The estimated MDR is calculated as:
+
+```python
+filtered["MDR_0.4"] = np.where(
+    filtered[amount_col] > 2000,
+    np.minimum(filtered[amount_col] * 0.004, 300),
+    0
+)
+```
+
+Therefore:
+
+```text
+Amount ≤ ₹2,000
+        ↓
+Estimated MDR = ₹0
+
+Amount > ₹2,000
+        ↓
+MDR = Amount × 0.004
+        ↓
+Maximum = ₹300 per transaction
+```
+
+---
+
+## 🎯 Project Objective
+
+The objective of this project is to demonstrate how **Python, Pandas, NumPy, and Streamlit** can be used to build an interactive financial/data analytics dashboard.
+
+The project focuses on:
+
+* Data cleaning
+* Data filtering
+* KPI calculation
+* Business-rule implementation
+* Transaction analysis
+* Data visualization
+* Interactive dashboard development
+
+---
+
+## 📚 Key Data Analytics Concepts Demonstrated
+
+This project demonstrates practical knowledge of:
+
+* Data ingestion
+* CSV handling
+* Data cleaning
+* Date conversion
+* Numeric conversion
+* Filtering
+* GroupBy operations
+* Aggregation
+* Conditional calculations
+* KPI development
+* Time-series analysis
+* Data visualization
+* Interactive dashboards
+
+---
+
+## 🏛️ References
+
+The application includes references to:
+
+* **Press Information Bureau — Ministry of Finance**
+* **Department of Financial Services — Ministry of Finance**
+* Merchant Discount Rate (MDR) information for selected UPI P2M transactions
+
+The dashboard itself also clearly notes that the 0.4% calculation is an analytical estimate and should not be described as a Paytm-specific tax.
+
+---
+
+## ⚠️ Disclaimer
+
+This project is intended for **educational and data-analysis purposes**.
+
+The MDR values displayed by the dashboard are estimates calculated according to the rules implemented in the application. They should not be considered legal, tax, accounting, or payment-settlement advice.
+
+---
 
 ## 👩‍💻 Author
 
 **Aakansha Saxena**
 
-### Skills Demonstrated
 
-`Python` • `Pandas` • `NumPy` • `Streamlit` • `Data Cleaning` • `EDA` • `Data Visualization` • `Dashboard Development` • `Interactive Analytics`
+
+## ⭐ Future Improvements
+
+* Add downloadable filtered reports
+* Add more payment applications
+* Add advanced Plotly visualizations
+* Add automated database connectivity
+* Add real-time transaction analytics
+* Add authentication
+* Add deployment on Streamlit Cloud
+* Add advanced financial KPIs
+* Add monthly/yearly comparison
+* Add Excel export functionality
 
 ---
 
-⭐ If you find this project useful, consider giving the repository a star!
+## ⭐ If you find this project useful
+
+Consider giving the repository a ⭐ **Star** on GitHub!
